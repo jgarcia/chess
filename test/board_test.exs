@@ -36,18 +36,4 @@ defmodule BoardTest do
     |> Board.apply_move('Jon', {:bP, {:c, 7}, {:c, 6}})
     assert result == {:error, "Cannot move other player's pieces"}
   end
-
-  # A player can only perform valid moves
-
-
-  # A bishop can only move in diagonal on the same tile color
-  # A rook can only move in straight lines
-  # A king can move in any direction one tile at a time
-  # A pawn can only move forward
-  # A Knight can only move in L direction
-  # A queen can move in any direction without tile number limitation
-
-
-
-
 end
