@@ -1,16 +1,25 @@
 defmodule MoveTest do
-  use TestCase
+  use ExUnit.Case
+  alias Chess.Move
 
   ###
   # Pawn rules
   ###
 
-  test "a pawn can move two tiles on the first move"
+  test "pawn movements" do
+    assert Move.valid?(:wP, {:c, 2}, {:c, 4}) == true
+    assert Move.valid?(:wP, {:c, 2}, {:c, 4}) == true
+    assert Move.valid?(:wP, {:c, 2}, {:c, 5}) == false
+    assert Move.valid?(:bP, {:c, 7}, {:c, 6}) == true
+    assert Move.valid?(:bP, {:c, 7}, {:c, 5}) == true
+    assert Move.valid?(:bP, {:c, 7}, {:c, 4}) == false
+  end
 
-  # A Pawn can only move forward
-  # A Pawn can perform en passant capture
-  # A Pawn can only capture diagonaly
-
+  # test "bishop movements" do
+  #   assert Move.valid?(:wB, {:c, 1}, {:e, 3}) == true
+  #   assert Move.valid?(:wB, {:c, 1}, {:f, 4}) == true
+  #   assert Move.valid?(:wB, {:c, 1}, {:d, 3}) == false
+  # end
 
   # A bishop can only move in diagonal on the same tile color
   # A rook can only move in straight lines
