@@ -16,24 +16,24 @@ defmodule Chess.Move do
   defp valid_move?(:P, {_, 7}, {_, 5}), do: true
   defp valid_move?(:P, {_, y1}, {_, y2}), do: abs(y2 - y1) == 1
 
-  defp valid_move?(:B, {x1, y1}, {x2, y2}) do
-    abs(int_value_of(x1) - int_value_of(x2)) == abs(y1 - y2)
+  defp valid_move?(:B, origin, destination) do
+    delta_x(origin, destination) == delta_y(origin, destination)
   end
 
-  defp valid_move?(:R, {x1, y1}, {x2, y2}) do
-    x_delta = abs(int_value_of(x1) - int_value_of(x2))
-    y_delta = abs(y1 - y2)
-
-    case {x_delta, y_delta} do
+  defp valid_move?(:R, origin, destination) do
+    case {delta_x(origin, destination), delta_y(origin, destination)} do
       {0, _}  -> true
       {_, 0}  -> true
       _       -> false
     end
   end
 
-  defp valid_move?(:K, {x1, y1}, {x2, y2}) do
-    abs(y1 - y2) <= 1 && abs(int_value_of(x1) - int_value_of(x2)) <= 1
+  defp valid_move?(:K, origin, destination) do
+    delta_y(origin, destination) <= 1 && delta_x(origin, destination) <= 1
   end
+
+  defp delta_x({x1, _}, {x2, _}), do: abs(int_value_of(x1) - int_value_of(x2))
+  defp delta_y({_, y1}, {_, y2}), do: abs(y1 - y2)
 
   defp int_value_of(x_coord) do
     x_coord
