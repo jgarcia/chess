@@ -10,7 +10,6 @@ defmodule BoardTest do
     assert board.black == 'Stewart'
   end
 
-
   test "every player move is recorded in the move list" do
     board = Board.new_game(%{white: 'Jon', black: 'Stewart'})
     |> Board.apply_move('Jon', {:wP, {:c, 2}, {:c, 3}})
@@ -23,7 +22,6 @@ defmodule BoardTest do
     |> Board.apply_move('Jon', {:wP, {:d, 2}, {:d, 3}})
     assert result == {:error, "Cannot perform two moves in a row"}
   end
-
 
   test "a player can only perform valid moves" do
     result = Board.new_game(%{white: 'Jon', black: 'Stewart'})
