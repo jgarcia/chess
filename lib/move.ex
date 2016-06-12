@@ -5,13 +5,6 @@ defmodule Chess.Move do
     |> valid_move?(origin, destination)
   end
 
-  defp strip_color(piece) do
-    piece
-    |> Atom.to_string
-    |> String.slice(1,1)
-    |> String.to_atom
-  end
-
   defp valid_move?(:P, {_, 2}, {_, 4}), do: true
   defp valid_move?(:P, {_, 7}, {_, 5}), do: true
   defp valid_move?(:P, {_, y1}, {_, y2}), do: abs(y2 - y1) == 1
@@ -39,5 +32,12 @@ defmodule Chess.Move do
     x_coord
     |> Atom.to_char_list
     |> Enum.at(0)
+  end
+
+  defp strip_color(piece) do
+    piece
+    |> Atom.to_string
+    |> String.slice(1,1)
+    |> String.to_atom
   end
 end
