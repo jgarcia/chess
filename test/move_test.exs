@@ -27,6 +27,22 @@ defmodule MoveTest do
     assert Move.valid?(:wR, {:a, 1}, {:h, 1}) == true
   end
 
+  test "king movements" do
+    assert Move.valid?(:wK, {:b, 2}, {:a, 3}) == true
+    assert Move.valid?(:wK, {:b, 2}, {:b, 3}) == true
+    assert Move.valid?(:wK, {:b, 2}, {:c, 3}) == true
+    assert Move.valid?(:wK, {:b, 2}, {:a, 1}) == true
+    assert Move.valid?(:wK, {:b, 2}, {:b, 1}) == true
+    assert Move.valid?(:wK, {:b, 2}, {:c, 1}) == true
+    assert Move.valid?(:wK, {:b, 2}, {:a, 2}) == true
+    assert Move.valid?(:wK, {:b, 2}, {:c, 2}) == true
+    # Invalid moves
+    assert Move.valid?(:wK, {:b, 2}, {:d, 2}) == false
+    assert Move.valid?(:wK, {:b, 2}, {:b, 4}) == false
+    assert Move.valid?(:wK, {:b, 2}, {:c, 4}) == false
+    assert Move.valid?(:wK, {:b, 2}, {:a, 4}) == false
+  end
+
   # A king can move in any direction one tile at a time
   # A pawn can only move forward
   # A Knight can only move in L direction

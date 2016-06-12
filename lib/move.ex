@@ -31,6 +31,10 @@ defmodule Chess.Move do
     end
   end
 
+  defp valid_move?(:K, {x1, y1}, {x2, y2}) do
+    abs(y1 - y2) <= 1 && abs(int_value_of(x1) - int_value_of(x2)) <= 1
+  end
+
   defp int_value_of(x_coord) do
     x_coord
     |> Atom.to_char_list
