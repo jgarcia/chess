@@ -60,6 +60,19 @@ defmodule MoveTest do
     assert Move.valid?(:wN, {:c, 3}, {:a, 3}) == false
   end
 
-  # A queen can move in any direction without tile number limitation
+  test "queen movements" do
+    assert Move.valid?(:wQ, {:c, 3}, {:a, 1}) == true
+    assert Move.valid?(:wQ, {:c, 3}, {:a, 5}) == true
+    assert Move.valid?(:wQ, {:c, 3}, {:a, 3}) == true
+    assert Move.valid?(:wQ, {:c, 3}, {:e, 1}) == true
+    assert Move.valid?(:wQ, {:c, 3}, {:e, 5}) == true
+    assert Move.valid?(:wQ, {:c, 3}, {:e, 3}) == true
+    assert Move.valid?(:wQ, {:c, 3}, {:c, 1}) == true
+    assert Move.valid?(:wQ, {:c, 3}, {:c, 5}) == true
 
+    assert Move.valid?(:wQ, {:c, 3}, {:b, 1}) == false
+    assert Move.valid?(:wQ, {:c, 3}, {:b, 5}) == false
+    assert Move.valid?(:wQ, {:c, 3}, {:d, 1}) == false
+    assert Move.valid?(:wQ, {:c, 3}, {:d, 5}) == false
+  end
 end

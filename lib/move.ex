@@ -33,6 +33,14 @@ defmodule Chess.Move do
     end
   end
 
+  defp valid_move?(:Q, origin, destination) do
+    case {delta_x(origin, destination), delta_y(origin, destination)} do
+      {0, _} -> true
+      {_, 0} -> true
+      {x, y} -> x - y == 0
+    end
+  end
+
   defp delta_x({x1, _}, {x2, _}), do: abs(int_value_of(x1) - int_value_of(x2))
   defp delta_y({_, y1}, {_, y2}), do: abs(y1 - y2)
 
