@@ -6,6 +6,10 @@ defmodule Chess.Server do
     GenServer.start(Chess.Server, nil)
   end
 
+  def join(pid, player) do
+    GenServer.cast(pid, {:join, player})
+  end
+
   def apply_move(pid, player, move) do
     GenServer.cast(pid, {:apply_move, player, move})
   end
@@ -25,7 +29,7 @@ defmodule Chess.Server do
   def handle_cast({:apply_move, player, move}, state) do
     case Board.apply_move(state, player, move) do
       {:error, _} -> {:noreply, state}
-      board       -> {:noreply, board}
+      new_state   -> {:noreply, new_state}
     end
   end
   
