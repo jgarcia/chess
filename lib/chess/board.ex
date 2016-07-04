@@ -2,8 +2,8 @@ defmodule Chess.Board do
   alias Chess.Board
   alias Chess.Move
 
-  defstruct white: 'player 1',
-    black: 'player 2',
+  defstruct white: "player 1",
+    black: "player 2",
     moves: [],
     pieces_captured_by_white: [],
     pieces_captured_by_black: [],

@@ -3,7 +3,7 @@ defmodule Chess.Server do
   alias Chess.Board
 
   def start do
-    GenServer.start(Chess.Server, {"Jon", "Jim"})
+    GenServer.start(Chess.Server, nil)
   end
 
   def apply_move(pid, player, move) do
@@ -18,8 +18,8 @@ defmodule Chess.Server do
   GenServer callbacks 
   """
 
-  def init({player_1, player_2}) do
-    {:ok, Board.new_game(%{white: player_1, black: player_2})}
+  def init(_) do
+    {:ok, Board.new_game(%{white: "player 1", black: "player 2"})}
   end
 
   def handle_cast({:apply_move, player, move}, state) do
