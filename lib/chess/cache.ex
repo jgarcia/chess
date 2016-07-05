@@ -1,14 +1,13 @@
 defmodule Chess.Cache do
   use GenServer
 
-  def start do
-    GenServer.start(__MODULE__, nil)
+  def start_link do
+    GenServer.start_link(__MODULE__, nil, name: :chess_cache)
   end
 
-  def get_server(pid, name) do
-    GenServer.call(pid, {:get_board, name})
+  def get_server(name) do
+    GenServer.call(:chess_cache, {:get_board, name})
   end
-
 
   @doc  """
   GenServer callbacks
