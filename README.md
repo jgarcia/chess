@@ -1,20 +1,9 @@
 # Chess
 
-**TODO: Add description**
+A simple chess implementation in Elixir, using basic OTP concepts such as GenServer and Supervision.
 
-## Installation
+## TODO
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add chess to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:chess, "~> 0.0.1"}]
-        end
-
-  2. Ensure chess is started before your application:
-
-        def application do
-          [applications: [:chess]]
-        end
+ - [ ] command line interface
+ - [ ] advanced chess moves validation
 
