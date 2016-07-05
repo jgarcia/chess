@@ -2,8 +2,8 @@ defmodule Chess.Board do
   alias Chess.Board
   alias Chess.Move
 
-  defstruct white: "player 1",
-    black: "player 2",
+  defstruct white: "",
+    black: "",
     moves: [],
     pieces_captured_by_white: [],
     pieces_captured_by_black: [],
@@ -18,8 +18,19 @@ defmodule Chess.Board do
       h: [:wR, :wP, 0, 0, 0, 0, :bP, :bR],
     }
 
+  def new_game do
+    %Board{}
+  end
+
   def new_game %{white: player_1, black: player_2} do
     %Board{white: player_1, black: player_2}
+  end
+
+  def join(board, player) do
+    case board.white do
+      "" -> %Board{ board | white: player }
+      _  -> %Board{ board | black: player }
+    end
   end
 
   def apply_move(board, player, {piece, origin, destination}) do

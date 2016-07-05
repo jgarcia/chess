@@ -3,13 +3,6 @@ defmodule CacheTest do
   alias Chess.Cache
   alias Chess.Server
 
-  test "fetching board that does not exist returns a new board" do
-    {:ok, cache} = Cache.start
-    {:ok, server} = Cache.get_server(cache, "jon's board")
-    board = Server.get_board(server)
-    assert board.white ==  "player 1"
-  end
-
   test "fetching existing server should not create a new server" do
     {:ok, cache} = Cache.start
     {:ok, server} = Cache.get_server(cache, "jon's board")

@@ -34,4 +34,17 @@ defmodule BoardTest do
     |> Board.apply_move('Jon', {:bP, {:c, 7}, {:c, 6}})
     assert result == {:error, "Cannot move other player's pieces"}
   end
+
+  test "first joining player takes white side" do
+    result = Board.new_game
+    |> Board.join("Jon")
+    assert result.white == "Jon"
+  end
+
+  test "second joining player takes black side" do
+    result = Board.new_game
+    |> Board.join("Jon")
+    |> Board.join("James")
+    assert result.black == "James"
+  end
 end

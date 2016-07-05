@@ -10,6 +10,13 @@ defmodule ServerTest do
     {:ok, server} = Server.start
 
     board = Server.get_board(server)
-    assert board.white == "player 1"
+    assert board != nil
+  end
+
+  test "can join a server" do
+    {:ok, server} = Server.start
+    Server.join(server, "jon")
+    board = Server.get_board(server)
+    assert board.white == "jon"
   end
 end

@@ -19,11 +19,11 @@ defmodule Chess.Server do
   end
 
   @doc """
-  GenServer callbacks 
+  GenServer callbacks
   """
 
   def init(_) do
-    {:ok, Board.new_game(%{white: "player 1", black: "player 2"})}
+    {:ok, Board.new_game}
   end
 
   def handle_cast({:apply_move, player, move}, state) do
@@ -32,7 +32,11 @@ defmodule Chess.Server do
       new_state   -> {:noreply, new_state}
     end
   end
-  
+
+  def handle_cast({:join, player}, state) do
+    {:noreply, Board.join(state, player)}
+  end
+
   def handle_call({:get_board}, _, state) do
     {:reply, state, state}
   end
